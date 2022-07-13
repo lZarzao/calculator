@@ -8,12 +8,12 @@ function Button(props) {
   };
 
   return (
-    <div
+    <button
       className={`button-container ${isOperator(props.children) && 'operator'}`}
       onClick={() => props.clicking(props.children)}
     >
       {props.children}
-    </div>
+    </button>
   );
 }
 

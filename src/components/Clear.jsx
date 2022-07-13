@@ -3,9 +3,9 @@ import '../stylesheets/Clear.css';
 
 function Clear(props) {
   return (
-    <div className='button-clear' onClick={() => props.clearInput()}>
+    <button className='button-clear' onClick={() => props.clearInput()}>
       {props.children}
-    </div>
+    </button>
   );
 }
 

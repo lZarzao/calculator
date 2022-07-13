@@ -1,20 +1,43 @@
 import './App.css';
-import freeCodeCampLogo from './assets/freecodecamp-logo.png'
+import freeCodeCampLogo from './assets/freecodecamp-logo.png';
 import Button from './components/Button';
 import Screen from './components/Screen';
-import Clear from './components/Clear'
-import { useState } from 'react'
+import Clear from './components/Clear';
+import { useState } from 'react';
+import { evaluate } from 'mathjs';
 
 function App() {
+  const [input, setInput] = useState('0');
 
-  const [input, setInput] = useState('');
-
-  const addInput = val => {
-    setInput(input + val);
+  const addInput = (val) => {
+    if (!isNaN(val)) {
+      if (input[0] !== '0') {
+        setInput(input + val);
+      } else {
+        setInput(val);
+      }
+    } else {
+      if (input[0] !== '0') {
+        console.log(typeof input)
+        if (!isNaN(input[input.length - 1])) {
+          setInput(input + val);
+        } else {
+          setInput(input.slice(0, -1) + val);
+        }
+      }
+    }
   };
 
   const clearInput = () => {
-    setInput('');
+    setInput('0');
+  };
+
+  const result = () => {
+    if (input) {
+      setInput(evaluate(input).toString());
+    } else {
+      alert('Please enter values first');
+    }
   };
 
   return (
@@ -43,7 +66,7 @@ function App() {
           <Button clicking={addInput}>*</Button>
         </li>
         <li className='row'>
-          <Button clicking={addInput}>=</Button>
+          <Button clicking={result}>=</Button>
           <Button clicking={addInput}>0</Button>
           <Button clicking={addInput}>.</Button>
           <Button clicking={addInput}>/</Button>
