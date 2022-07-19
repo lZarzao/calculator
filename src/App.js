@@ -18,7 +18,6 @@ function App() {
       }
     } else {
       if (input[0] !== '0') {
-        console.log(typeof input)
         if (!isNaN(input[input.length - 1])) {
           setInput(input + val);
         } else {
